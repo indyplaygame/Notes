@@ -22,6 +22,7 @@ class TaskTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme scheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
       child: Slidable(
@@ -45,34 +46,34 @@ class TaskTile extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: Colors.deepPurple[300],
+            color: scheme.primary,
             borderRadius: BorderRadius.circular(10)
           ),
           child: Row(
             children: [
-              Checkbox(value: completed, onChanged: on_change),
+              Checkbox(value: completed, onChanged: on_change, activeColor: scheme.onPrimary, checkColor: scheme.primary),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(task_name,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: scheme.onPrimary,
                         fontSize: 20,
                         decoration: completed ? TextDecoration.lineThrough : TextDecoration.none,
                         decorationThickness: 1,
-                        decorationColor: Colors.white
+                        decorationColor: scheme.onPrimary
                       ),
                     ),
                     Text(task_description,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: scheme.onPrimary,
                         fontSize: 13,
                         decoration: completed ? TextDecoration.lineThrough : TextDecoration.none,
                         decorationThickness: 1.5,
-                        decorationColor: Colors.white
+                        decorationColor: scheme.onPrimary
                       ),
                     )
                   ]

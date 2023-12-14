@@ -31,8 +31,9 @@ class _TasksState extends State<Tasks> {
     showDialog(
       context: context,
       builder: (context) {
+        ColorScheme scheme = Theme.of(context).colorScheme;
         return AlertDialog(
-          backgroundColor: Colors.deepPurple[200],
+          backgroundColor: scheme.secondary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10)
           ),
@@ -42,9 +43,9 @@ class _TasksState extends State<Tasks> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Create a new task",
+                Text("Create a new task",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: scheme.onSecondary,
                     fontSize: 17,
                     fontWeight: FontWeight.bold
                   )
@@ -60,21 +61,35 @@ class _TasksState extends State<Tasks> {
                   children: [
                     Container(
                       width: 150,
-                      margin: EdgeInsets.only(top: 10, right: 10),
+                      margin: const EdgeInsets.only(top: 10, right: 10),
                       child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(scheme.onPrimary)
+                        ),
                         onPressed: () {
                           saveNewTask(name.text, description.text);
                         },
-                        child: const Text("Create task"),
+                        child: Text("Create task",
+                          style: TextStyle(
+                            color: scheme.primary
+                          )
+                        ),
                       ),
                     ),
                     Container(
                       width: 100,
-                      margin: EdgeInsets.only(top: 10),
+                      margin: const EdgeInsets.only(top: 10),
                       child: ElevatedButton(
                         onPressed: () => Navigator.of(context).pop(),
-                        child: const Text("Cancel")
-                      ),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(scheme.onPrimary)
+                        ),
+                        child: Text("Cancel",
+                          style: TextStyle(
+                            color: scheme.primary
+                          )
+                        )
+                      )
                     )
                   ],
                 )
@@ -107,8 +122,9 @@ class _TasksState extends State<Tasks> {
     showDialog(
       context: context,
       builder: (context) {
+        ColorScheme scheme = Theme.of(context).colorScheme;
         return AlertDialog(
-          backgroundColor: Colors.deepPurple[200],
+          backgroundColor: scheme.secondary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10)
           ),
@@ -118,9 +134,9 @@ class _TasksState extends State<Tasks> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Edit Task",
+                Text("Edit Task",
                   style: TextStyle(
-                    color: Colors.white,
+                    color: scheme.onSecondary,
                     fontSize: 17,
                     fontWeight: FontWeight.bold
                   )
@@ -136,12 +152,19 @@ class _TasksState extends State<Tasks> {
                   children: [
                     Container(
                       width: 150,
-                      margin: EdgeInsets.only(top: 20, right: 10),
+                      margin: const EdgeInsets.only(top: 20, right: 10),
                       child: ElevatedButton(
                         onPressed: () {
                           saveEdittedTask(name.text, description.text, index);
                         },
-                        child: const Text("Save task"),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(scheme.onPrimary)
+                        ),
+                        child: Text("Save task",
+                          style: TextStyle(
+                            color: scheme.primary
+                          ),
+                        ),
                       ),
                     ),
                     Container(
@@ -149,7 +172,14 @@ class _TasksState extends State<Tasks> {
                       margin: EdgeInsets.only(top: 20),
                       child: ElevatedButton(
                         onPressed: () => Navigator.of(context).pop(),
-                        child: const Text("Cancel")
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(scheme.onPrimary)
+                        ),
+                        child: Text("Cancel",
+                          style: TextStyle(
+                            color: scheme.primary
+                          ),
+                        )
                       ),
                     )
                   ],
@@ -174,12 +204,13 @@ class _TasksState extends State<Tasks> {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme scheme = Theme.of(context).colorScheme;
     return Scaffold(
-      backgroundColor: Colors.deepPurple[100],
+      backgroundColor: scheme.background,
       drawer: const Menu(),
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple[200],
-        title: const Text("Tasks", style: TextStyle(color: Colors.white)),
+        backgroundColor: scheme.secondary,
+        title: Text("Tasks", style: TextStyle(color: scheme.onSecondary)),
         centerTitle: true,
         elevation: 10,
         shadowColor: Colors.black,
@@ -189,7 +220,7 @@ class _TasksState extends State<Tasks> {
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               }, 
-              icon: const Icon(Icons.menu, color: Colors.white)
+              icon: Icon(Icons.menu, color: scheme.onSecondary)
             );
           },
         )
@@ -210,10 +241,10 @@ class _TasksState extends State<Tasks> {
             edit_function: (context) => {editTask(context, index)},
           );
         },
-      ) : const Center(
+      ) : Center(
         child: Text("You don't have any tasks yet.",
           style: TextStyle(
-            color: Colors.white,
+            color: scheme.onBackground,
             fontSize: 20
           )
         ),
@@ -223,7 +254,7 @@ class _TasksState extends State<Tasks> {
           return FloatingActionButton(
             onPressed: () {createNewTask(context);},
             tooltip: "Create a new task",
-            child: Icon(Icons.add, color: Colors.deepPurple[300])
+            child: Icon(Icons.add, color: scheme.primary)
           );
         }
       )

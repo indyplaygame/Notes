@@ -19,6 +19,7 @@ class TextInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ColorScheme scheme = Theme.of(context).colorScheme;
     return Container(
       margin: const EdgeInsets.only(top: 15),
       child: TextField(
@@ -26,28 +27,28 @@ class TextInput extends StatelessWidget {
         controller: controller,
         minLines: min_rows,
         maxLines: max_rows,
-        style: const TextStyle(
-          color: Colors.white
+        style: TextStyle(
+          color: scheme.onSecondary
         ),
         decoration: InputDecoration(
-          counterStyle: const TextStyle(color: Colors.white),
+          counterStyle: TextStyle(color: scheme.onSecondary),
           alignLabelWithHint: true,
           floatingLabelBehavior: FloatingLabelBehavior.always,
           hintText: hint,
-          hintStyle: const TextStyle(
-            color: Colors.white,
+          hintStyle: TextStyle(
+            color: scheme.onSecondary,
             fontWeight: FontWeight.w200
           ),
           labelText: label,
-          labelStyle: const TextStyle(
-            color: Colors.white,
+          labelStyle: TextStyle(
+            color: scheme.onSecondary,
             fontWeight: FontWeight.w400
           ),
-          focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.white)
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: scheme.onSecondary)
           ),
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.white)
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: scheme.onSecondary)
           )
         )
       ),
